@@ -1,0 +1,44 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.pad {
+    background: gray;
+    min-height: 500px;
+    max-width: 1300px;
+    padding: 25px;
+    border-radius: 25px;
+    display: flex;
+    gap: 25px;
+
+}
+
+.grid {
+    height: 800px;
+    width: 800px;
+    display: flex;
+    border: 5px solid black;
+
+}
+
+.row {
+    width: 100%;
+}
+
+.grid-box {
+    aspect-ratio: 1;
+    border: 2px solid black;
+    background-color: white;
+}
+
+.red-square {
+    background-color:red;
+}
