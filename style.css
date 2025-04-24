@@ -104,3 +104,64 @@ form input {
 .title-text span {
     color: rgb(235, 173, 29);
 }
+
+@media screen and (max-width: 1024px) {
+    .pad {
+        flex-direction: column;
+        align-items: center;
+        max-width: 95%;
+        padding: 20px;
+    }
+
+    .grid {
+        width: 90vw;
+        height: 90vw;
+    }
+
+    .text {
+        width: 100%;
+        align-items: center;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .title-text {
+        font-size: 2em;
+        text-align: center;
+    }
+
+    .text * {
+        font-size: 1em;
+    }
+
+    .slideContainer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    form {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+
+    #size {
+        width: 150px;
+        height: 50px;
+    }
+
+    .grid {
+        width: 90vw;
+        height: 90vw;
+    }
+
+    .pad {
+        gap: 15px;
+        padding: 15px;
+    }
+
+    button {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+}
