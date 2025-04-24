@@ -15,15 +15,14 @@ function gridSettings() {
     const submitButton = document.querySelector("#settings-submit");
 
     submitButton.onclick = ()=> {
-        if (gridSize !== sizeInput.value) {
+        const newSize = sizeInput.value;
+
+        if (gridSize !== newSize) {
+            gridSize = newSize;
             gridCreator(gridSize, true);
         }
-        gridSize = sizeInput.value;
-        if (brushInput.checked ) {
-            colorGrid(true);
-        } else {
-            colorGrid(false);
-        }
+
+        colorGrid(brushInput.checked);
     }
 }
 
