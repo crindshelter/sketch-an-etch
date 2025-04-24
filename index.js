@@ -3,28 +3,24 @@ const gridContainer = document.querySelector(".grid");
 let gridSize = 16;
 
 function main() {
-    gridSettings()
+    gridSettings();
     gridCreator(gridSize, false);
-    colorGrid(true, "black");
+    colorGrid();
 }
 
 function gridSettings() {
     const sizeInput = document.querySelector("#size");
     const brushInput = document.querySelector("#brush");
     const color = document.querySelector("#color");
-    const submitButton = document.querySelector("#settings-submit");
     const resetButton = document.querySelector("#reset-button");
 
-    submitButton.onclick = ()=> {
-        const newSize = sizeInput.value;
-
+    sizeInput.addEventListener("input", () => {
+        const newSize = parseInt(sizeInput.value);
         if (gridSize !== newSize) {
             gridSize = newSize;
             gridCreator(gridSize, true);
         }
-
-        colorGrid(brushInput.checked, color.value);
-    }
+    });
 
     resetButton.onclick = ()=> {
         gridCreator(gridSize, true);
@@ -36,10 +32,10 @@ function gridCreator(size, redo){
     if (redo) {
         const element = document.querySelectorAll(".row");
         for (let i = 0; i < element.length; i++) {
-            element[i].remove()
+            element[i].remove();
         }
     }
-    
+
     for (let i = 0; i < size; i++) {
         const row = document.createElement("div");
         row.classList.add("row");
@@ -55,36 +51,38 @@ function gridCreator(size, redo){
         }
     }
 
+    colorGrid();
 }
 
-function colorGrid(mode, color){
+function colorGrid() {
+    const brushInput = document.querySelector("#brush");
+    const colorInput = document.querySelector("#color");
     let gridBox = document.querySelectorAll(".grid-box");
     let isMouseDown = false;
-    let brush = mode;
 
-    
     for (let i = 0; i < gridBox.length; i++) {
         gridBox[i].addEventListener("mousedown", ()=> {
             isMouseDown = true;
-            if (brush) {
-                gridBox[i].style.backgroundColor = color;
+            if (brushInput.checked) {
+                gridBox[i].style.backgroundColor = colorInput.value;
             } else {
-                gridBox[i].classList.remove("color-square");
+                gridBox[i].style.backgroundColor = "";
             }
-        })
+        });
+
         gridBox[i].addEventListener("mouseup", ()=> {
             isMouseDown = false;
-        })
+        });
+
         gridBox[i].addEventListener("mousemove", ()=> {
             if (isMouseDown) {
-                if (brush) {
-                    gridBox[i].style.backgroundColor = color;
+                if (brushInput.checked) {
+                    gridBox[i].style.backgroundColor = colorInput.value;
                 } else {
-                    gridBox[i].classList.remove("color-square");
+                    gridBox[i].style.backgroundColor = "";
                 }
             }
-        })
-        
+        });
     }
 }
 
