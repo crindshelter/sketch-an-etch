@@ -21,15 +21,35 @@ function gridCreator(size){
 
 }
 
-function colorGrid(){
+function colorGrid(mode){
     let gridBox = document.querySelectorAll(".grid-box");
+    let isMouseDown = false;
+    let brush = mode;
     
     for (let i = 0; i < gridBox.length; i++) {
-        gridBox[i].addEventListener("mouseover", ()=> {
-            gridBox[i].classList.add("red-square");
+        gridBox[i].addEventListener("mousedown", ()=> {
+            isMouseDown = true;
+            if (brush) {
+                gridBox[i].classList.add("red-square");
+            } else {
+                gridBox[i].classList.remove("red-square");
+            }
         })
+        gridBox[i].addEventListener("mouseup", ()=> {
+            isMouseDown = false;
+        })
+        gridBox[i].addEventListener("mousemove", ()=> {
+            if (isMouseDown) {
+                if (brush) {
+                    gridBox[i].classList.add("red-square");
+                } else {
+                    gridBox[i].classList.remove("red-square");
+                }
+            }
+        })
+        
     }
 }
 
 gridCreator(gridSize);
-colorGrid();
+colorGrid(true);
