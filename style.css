@@ -18,7 +18,13 @@ body {
     border-radius: 25px;
     display: flex;
     gap: 25px;
+}
 
+.pad .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
 }
 
 .grid {

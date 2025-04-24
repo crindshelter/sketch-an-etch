@@ -1,8 +1,39 @@
 const gridContainer = document.querySelector(".grid");
 
-let gridSize = 52;
+let gridSize = 16;
 
-function gridCreator(size){
+function main() {
+    gridSettings()
+    gridCreator(gridSize, false);
+    colorGrid(true);
+}
+
+function gridSettings() {
+    const sizeInput = document.querySelector("#size");
+    const brushInput = document.querySelector("#brush");
+    const eraserInput = document.querySelector("#eraser");
+    const submitButton = document.querySelector("#settings-submit");
+
+    submitButton.onclick = ()=> {
+        if (gridSize !== sizeInput.value) {
+            gridCreator(gridSize, true);
+        }
+        gridSize = sizeInput.value;
+        if (brushInput.checked ) {
+            colorGrid(true);
+        } else {
+            colorGrid(false);
+        }
+    }
+}
+
+function gridCreator(size, redo){
+    if (redo) {
+        const element = document.querySelectorAll(".row");
+        for (let i = 0; i < element.length; i++) {
+            element[i].remove()
+        }
+    }
     
     for (let i = 0; i < size; i++) {
         const row = document.createElement("div");
@@ -51,5 +82,5 @@ function colorGrid(mode){
     }
 }
 
-gridCreator(gridSize);
-colorGrid(true);
+main()
+
