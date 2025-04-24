@@ -13,6 +13,7 @@ function gridSettings() {
     const brushInput = document.querySelector("#brush");
     const eraserInput = document.querySelector("#eraser");
     const submitButton = document.querySelector("#settings-submit");
+    const resetButton = document.querySelector("#reset-button");
 
     submitButton.onclick = ()=> {
         const newSize = sizeInput.value;
@@ -22,6 +23,11 @@ function gridSettings() {
             gridCreator(gridSize, true);
         }
 
+        colorGrid(brushInput.checked);
+    }
+
+    resetButton.onclick = ()=> {
+        gridCreator(gridSize, true);
         colorGrid(brushInput.checked);
     }
 }

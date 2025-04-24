@@ -11,7 +11,10 @@
         <div class="text">
             <h1>Sketch an ETCH</h1>
             <label>Size</label>
-            <input id="size" name="size" min="1" max="100" type="number" placeholder="16">
+            <div class="slideContainer">
+                <input id="size" name="size" min="1" max="100" type="range" placeholder="16" oninput="this.nextElementSibling.value = this.value">
+                <output></output>
+            </div>
             <form>
                 <label>Brush</label>
                 <input id="brush" name="brush" type="radio" value="brush">
@@ -19,6 +22,7 @@
                 <input id="eraser" name="brush" type="radio" value="eraser">
             </form>
             <button id="settings-submit">Submit</button>
+            <button id="reset-button">Reset</button>
         </div>
         <div class="grid">
             
