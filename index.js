@@ -5,13 +5,13 @@ let gridSize = 16;
 function main() {
     gridSettings()
     gridCreator(gridSize, false);
-    colorGrid(true);
+    colorGrid(true, "black");
 }
 
 function gridSettings() {
     const sizeInput = document.querySelector("#size");
     const brushInput = document.querySelector("#brush");
-    const eraserInput = document.querySelector("#eraser");
+    const color = document.querySelector("#color");
     const submitButton = document.querySelector("#settings-submit");
     const resetButton = document.querySelector("#reset-button");
 
@@ -23,12 +23,12 @@ function gridSettings() {
             gridCreator(gridSize, true);
         }
 
-        colorGrid(brushInput.checked);
+        colorGrid(brushInput.checked, color.value);
     }
 
     resetButton.onclick = ()=> {
         gridCreator(gridSize, true);
-        colorGrid(brushInput.checked);
+        colorGrid(brushInput.checked, color.value);
     }
 }
 
@@ -57,18 +57,19 @@ function gridCreator(size, redo){
 
 }
 
-function colorGrid(mode){
+function colorGrid(mode, color){
     let gridBox = document.querySelectorAll(".grid-box");
     let isMouseDown = false;
     let brush = mode;
+
     
     for (let i = 0; i < gridBox.length; i++) {
         gridBox[i].addEventListener("mousedown", ()=> {
             isMouseDown = true;
             if (brush) {
-                gridBox[i].classList.add("red-square");
+                gridBox[i].style.backgroundColor = color;
             } else {
-                gridBox[i].classList.remove("red-square");
+                gridBox[i].classList.remove("color-square");
             }
         })
         gridBox[i].addEventListener("mouseup", ()=> {
@@ -77,9 +78,9 @@ function colorGrid(mode){
         gridBox[i].addEventListener("mousemove", ()=> {
             if (isMouseDown) {
                 if (brush) {
-                    gridBox[i].classList.add("red-square");
+                    gridBox[i].style.backgroundColor = color;
                 } else {
-                    gridBox[i].classList.remove("red-square");
+                    gridBox[i].classList.remove("color-square");
                 }
             }
         })
